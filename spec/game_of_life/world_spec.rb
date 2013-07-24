@@ -29,11 +29,11 @@ module GameOfLife
         subject.grid.each { |row| row.should be_an_instance_of Array }
       end
 
-      # it 'should contain a Cell in each grid element' do
-      #   subject.grid.each do |row|
-      #     row.each { |element| element.should be_an_instance_of Cell }
-      #   end
-      # end
+      it 'should contain a Cell in each grid element' do
+        subject.grid.each do |row|
+          row.each { |element| element.should be_an_instance_of Cell }
+        end
+      end
     end
   end
 end
