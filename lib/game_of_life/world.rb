@@ -30,7 +30,7 @@ module GameOfLife
       def set_neighbours_on_cells!
         neighbour_offset = [-1, 0, 1].product([-1, 0, 1]) - [[0, 0]]
         cells.each do |cell|
-          surrounding_locations = neighbour_offset.map { |e| {x: e[0] + cell.position[:x], y: e[1] + cell.position[:y]} }
+          surrounding_locations = neighbour_offset.map { |e| {x: e[1] + cell.position[:x], y: e[0] + cell.position[:y]} }
           cell.neighbours = surrounding_locations.select do |ref|
             ref[:x] >= 0 && ref[:y] >=0 && ref[:x] < @rows && ref[:y] < @columns
           end
