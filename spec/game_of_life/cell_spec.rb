@@ -39,20 +39,15 @@ module GameOfLife
 
     describe "#alive?" do
       context 'for a :dead Cell' do
-        it 'should be false' do
-          @cell = GameOfLife::Cell.new
-          @cell.alive?.should be_false
-        end
+        before(:each) { subject.state = :dead }
+
+        it { subject.alive?.should be_false }
       end
 
       context 'for an :alive Cell' do
-        before(:each) do
-          @cell = Cell.new
-          @cell.live!
-        end
-        it 'should be true' do
-          @cell.alive?.should be_true
-        end
+        before(:each) { subject.state = :alive }
+
+        it { subject.alive?.should be_true }
       end
     end
 
@@ -76,18 +71,14 @@ module GameOfLife
     describe "#dead?" do
       context 'for a :dead Cell' do
         it 'should be true' do
-          @cell = GameOfLife::Cell.new
-          @cell.dead?.should be_true
+          subject.dead?.should be_true
         end
       end
 
       context 'for an :alive Cell' do
-        before(:each) do
-          @cell = Cell.new
-          @cell.live!
-        end
+        before(:each) { subject.live! }
         it 'should be false' do
-          @cell.dead?.should be_false
+          subject.dead?.should be_false
         end
       end
     end
@@ -101,8 +92,7 @@ module GameOfLife
         end
       end
 
-      context 'for a :dead Cell' do
-        before(:each) { subject.state = :alive }
+      context 'for a :dead Cell' do        
         it 'should remain :dead' do
           expect { subject.die! }.
             to_not change { subject.alive? }.from(false)

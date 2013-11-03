@@ -38,12 +38,21 @@ module GameOfLife
 
     describe "#evolve!" do
 
-      describe 'Rule 1: Any live cell with fewer than two live neighbours dies' do
+      describe 'Rule 1: Any live cell with fewer than two live neighbours dies.' do
         before(:each) do
           @game = Game.new
           @target_cell = @game.cells.find { |cell| cell.position == { x: 1, y: 1} }
           @target_cell.live!
         end
+
+        # let(:game) { Game.new }
+        # subject { game.cells.sample }
+
+        # it ' Kills a living Cell with no live neighbours' do
+        #   game.stub!(:number_of_living_neighbours).with(subject).and_return(0)
+        #   puts game.inspect
+        #   expect{ game.evolve! }.to change{ subject.alive? }.from(true).to(false)
+        # end
 
         it 'should kill a living Cell with no live neighbours' do
           expect{ @game.evolve! }.to change{ @target_cell.alive? }.from(true).to(false)
